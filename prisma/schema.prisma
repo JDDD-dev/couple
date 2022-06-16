@@ -8,7 +8,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
-  output = "./generated/client"
+  output   = "./generated/client"
 }
 
 model Account {
@@ -46,8 +46,8 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  owns          Couple[] @relation(name: "creator")
-  joins         Couple[] @relation(name: "joiner")
+  owns          Couple[]  @relation(name: "creator")
+  joins         Couple[]  @relation(name: "joiner")
 }
 
 model VerificationToken {
@@ -59,10 +59,19 @@ model VerificationToken {
 }
 
 model Couple {
-  id         Int      @id @default(autoincrement())
-  created    DateTime @default(now())
-  creator    User     @relation(fields: [creatorId], references: [id], name: "creator")
-  creatorId  String
-  joiner     User?    @relation(fields: [joinerId], references: [id], name: "joiner")
-  joinerId   String?
+  id        Int             @id @default(autoincrement())
+  created   DateTime        @default(now())
+  creator   User            @relation(fields: [creatorId], references: [id], name: "creator", onDelete: Cascade)
+  creatorId String
+  joiner    User?           @relation(fields: [joinerId], references: [id], name: "joiner", onDelete: Cascade)
+  joinerId  String?
+  content   CoupleContent[]
+}
+
+model CoupleContent {
+  id       Int      @id @default(autoincrement())
+  couple   Couple   @relation(fields: [coupleId], references: [id], onDelete: Cascade)
+  coupleId Int
+  time     DateTime @default(now())
+  content  String
 }
