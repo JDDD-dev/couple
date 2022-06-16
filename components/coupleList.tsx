@@ -1,6 +1,6 @@
 import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
-import Head from 'next/head'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
 import CreateCouple from './coupleCreate'
@@ -36,8 +36,8 @@ const CoupleList = ({session}: Props) => {
 
     return (
         <>
-          Signed in as {session.user?.email} <br />
-          <button className="border-2 border-rose-500" onClick={() => signOut()}>signOut</button>
+          <Image src={session.user?.image!} width="100" height="100" layout="intrinsic" />
+          <button onClick={() => signOut()}>Logout</button>
             {data?.map((couple) => {
               return (
                 <div key={couple.id.toString()}>
