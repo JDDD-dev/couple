@@ -1,9 +1,11 @@
+import { Button, Row } from "@nextui-org/react"
+
 const CreateCouple = () => { 
 
     return (
-        <>
-          <button>Create new Couple</button>
-        </>
+      <Row>
+        <Button>Create new Couple</Button>
+      </Row>
     )
 }
 

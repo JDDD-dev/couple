@@ -1,3 +1,4 @@
+import { Avatar, Card, Container, Grid, Row, Text, User } from "@nextui-org/react"
 import { ResponseCouples } from "./coupleList"
 
 type Props = {
@@ -7,9 +8,11 @@ type Props = {
 
 const CoupleCard = ({couple}: Props) => {
     return (
-        <div>
-            <h1>{couple.id}{couple.creatorId}</h1>
-        </div>
+            <Card>
+                <Card.Header>
+                    <User name={couple.id} src="https://i.pravatar.cc/150?u=a042581f4e29026024d"></User>
+                </Card.Header>
+            </Card>
     )
 }
 
