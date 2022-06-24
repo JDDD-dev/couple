@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth/next";
 import { PrismaClient } from "../../../prisma/generated/client";
+import { authOptions } from "../auth/[...nextauth]";
 
 const prisma = new PrismaClient()
 
 export default async function handlerPostCouples(req: NextApiRequest, res: NextApiResponse){
-    const session = await getSession({req})
+    const session = await unstable_getServerSession(req, res, authOptions)
     if (session){
         const user = await prisma.user.findUnique({
             where: {

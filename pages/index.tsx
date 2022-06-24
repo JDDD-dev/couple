@@ -1,8 +1,7 @@
 import { Button } from '@nextui-org/react'
 import type { NextPage } from 'next'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Head from 'next/head'
-import NextLink from 'next/link'
 import CoupleList from '../components/coupleList'
 
 const Home: NextPage = () => {
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
         <Head>
           <title>Couple</title>
         </Head>
-        <CoupleList session={session}/>
+        <CoupleList />
       </>
     )
   }else{
@@ -23,15 +22,13 @@ const Home: NextPage = () => {
         <Head>
           <title>Couple</title>
         </Head>
-        <NextLink href="/api/auth/signin">
-          <Button css={{
+        <Button onPress={() => signIn('discord')} css={{
             '&:hover': {
               background: '$red700'
             }
           }} color="error">
           Login
-          </Button>
-        </NextLink>
+        </Button>
       </>
     )
   }

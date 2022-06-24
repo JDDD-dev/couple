@@ -11,6 +11,14 @@ generator client {
   output   = "./generated/client"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+  output = "./dbml"
+  outputName = "schema.dbml"
+  projectName = "Couple"
+  projectDatabaseType = "PostgreSQL"
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
