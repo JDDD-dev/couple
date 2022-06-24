@@ -1,4 +1,4 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth/next";
 import { PrismaClient } from "../../../prisma/generated/client";
 import { authOptions } from "../auth/[...nextauth]";
@@ -25,7 +25,7 @@ export default async function handlerGetCouples(req: NextApiRequest, res: NextAp
                 ]
             }
         })
-        res.status(200).send(couples)
+        res.status(200).send(JSON.stringify(couples))
     }else{
         res.status(403).send({
             error: "Unauthorized"

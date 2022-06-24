@@ -13,7 +13,7 @@ export default async function handlerGetUserId(req: NextApiRequest, res: NextApi
                 email: session.user?.email!
             }
         })
-        res.status(200).send(user?.id)
+        res.status(200).send(JSON.stringify(user?.id))
     }else{
         res.status(403).send({
             error: "Unauthorized"

@@ -4,6 +4,7 @@ import { ResponseCouples } from "./coupleList"
 
 type Props = {
     couple: ResponseCouples
+    id: String
 }
 
 type User = {
@@ -12,21 +13,16 @@ type User = {
     image: string
 }
 
-const CoupleCard = ({couple}: Props) => {
-    const [id, setId] = useState("")
-    useEffect(() => {
-        const fetchData = async () => {
-            const myId = await fetch("/api/couples/getUserId")
-            setId(await myId.json())
-        }
-        
-        fetchData().catch(console.error)
-    }, [])
-
+const CoupleCard = ({couple, id}: Props) => {
     const [userData, setUserData] = useState<User>()
     useEffect(() => {
         const fetchData = async () => {
-            const user = await fetch("/api/user/" + couple.joinerId)
+            let user
+            if (couple.creatorId == id){
+                user = await fetch("/api/user/" + couple.joinerId)
+            }else{
+                user = await fetch("/api/user/" + couple.creatorId)
+            }
             const userJson = await user.json()
             setUserData(userJson)
         }

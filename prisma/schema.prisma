@@ -12,10 +12,10 @@ generator client {
 }
 
 generator dbml {
-  provider = "prisma-dbml-generator"
-  output = "./dbml"
-  outputName = "schema.dbml"
-  projectName = "Couple"
+  provider            = "prisma-dbml-generator"
+  output              = "./dbml"
+  outputName          = "schema.dbml"
+  projectName         = "Couple"
   projectDatabaseType = "PostgreSQL"
 }
 
@@ -74,6 +74,7 @@ model Couple {
   joiner    User?           @relation(fields: [joinerId], references: [id], name: "joiner", onDelete: Cascade)
   joinerId  String?
   content   CoupleContent[]
+  active    Boolean         @default(false)
 }
 
 model CoupleContent {

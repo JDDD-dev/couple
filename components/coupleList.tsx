@@ -1,4 +1,4 @@
-import { Button, Container, Dropdown, Grid, Image, Loading, Row, Spacer, User } from '@nextui-org/react'
+import { Container, Grid, Loading, Row, Spacer, User } from '@nextui-org/react'
 import { signOut, useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
@@ -8,6 +8,7 @@ export type ResponseCouples = {
   id: String
   creatorId: String
   joinerId: String | undefined
+  created: String
 }
 
 const CoupleList = () => { 
@@ -15,12 +16,18 @@ const CoupleList = () => {
 
     const [state, setState] = useState(false)
     const [data, setData] = useState<ResponseCouples[]>()
+    const [id, setId] = useState("")
     useEffect(() => {
       setState(true)
       const fetchData = async () => {
         const dataResponse = await fetch('api/couples/getCouples')
         const jsondata: ResponseCouples[] = await dataResponse.json()
         setData(jsondata)
+        
+
+        const idResponse = await fetch('api/couples/getUserId')
+        const jsonId: string = await idResponse.json()
+        setId(jsonId) 
         setState(false)
       }
 
@@ -36,12 +43,11 @@ const CoupleList = () => {
         <Grid.Container>
           <Grid xs={3}>
           <Container fluid>
-          <User name={session?.user?.name} size="lg" pointer src={session?.user?.image!} bordered color="warning"></User>
-          <Button color={'error'} onPress={() => signOut()}>Logout</Button>
+          {session && session.user && session.user.image && <User name={session.user.name} size="lg" pointer src={session.user.image} onClick={() => signOut()} bordered color="warning"></User>}
           {data?.map((couple) => {
               return (
                 <div key={couple.id.toString()} ><Row>
-                  <CoupleCard couple={couple} />
+                  <CoupleCard couple={couple} id={id} />
                 </Row><Spacer y={1} /></div>
               )
           })}
