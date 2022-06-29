@@ -1,11 +1,15 @@
-import { Button, Row } from "@nextui-org/react"
+import { useState } from "react"
 
 const CreateCouple = () => { 
+    
+    const [visible, setVisible] = useState(false)
+    const handler = () => setVisible(true)
+    const closeHandler = () => {
+      setVisible(false)
+    }
 
     return (
-      <Row>
-        <Button>Create new Couple</Button>
-      </Row>
+        <button className="">Create new Couple</button>
     )
 }
 

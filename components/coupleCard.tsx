@@ -1,4 +1,3 @@
-import { Avatar, Card, Container, Grid, Row, Text, User } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import { ResponseCouples } from "./coupleList"
 
@@ -11,6 +10,7 @@ type User = {
     name: String
     id: String
     image: string
+    email: string
 }
 
 const CoupleCard = ({couple, id}: Props) => {
@@ -28,15 +28,11 @@ const CoupleCard = ({couple, id}: Props) => {
         }
         
         fetchData().catch(console.error)
-    }, [])
+    }, [couple.creatorId, couple.joinerId, id])
 
 
     return (
-            <Card>
-                <Card.Header>
-                    <User name={userData?.name} src={userData?.image}></User>
-                </Card.Header>
-            </Card>
+        <div></div>
     )
 }
 

@@ -1,5 +1,5 @@
-import { Container, Grid, Loading, Row, Spacer, User } from '@nextui-org/react'
 import { signOut, useSession } from 'next-auth/react'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
 import CreateCouple from './coupleCreate'
@@ -35,32 +35,25 @@ const CoupleList = () => {
     }, [])
 
     if (state){
-      return <Loading color="warning">Loading...</Loading>
+      return <p>Loading...</p>
     }
 
     return (
-      <>
-        <Grid.Container>
-          <Grid xs={3}>
-          <Container fluid>
-          {session && session.user && session.user.image && <User name={session.user.name} size="lg" pointer src={session.user.image} onClick={() => signOut()} bordered color="warning"></User>}
-          {data?.map((couple) => {
+          <>
+            <div className='container sm bg-slate-400'>
+              <Image src={session?.user?.image!} layout="responsive" width="50" height="50" />
+              <p>{session?.user?.name}</p>
+              <p className='text-gray-500'>{session?.user?.email}</p>
+            </div>
+            {data?.map((couple) => {
               return (
-                <div key={couple.id.toString()} ><Row>
+                <div key={couple.id.toString()} >
                   <CoupleCard couple={couple} id={id} />
-                </Row><Spacer y={1} /></div>
+                </div>
               )
-          })}
-          {data?.length! < 3 && <CreateCouple />}
-          </Container>
-          </Grid>
-          <Grid xs css={{
-            backgroundColor: '$blue300'
-          }}>
-
-          </Grid>
-        </Grid.Container>
-      </>
+            })}
+            {data?.length! < 3 && <CreateCouple />}
+          </>
     )
 }
 
