@@ -1,5 +1,5 @@
-import { signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
+import { Loader } from '@mantine/core'
+import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
 import CreateCouple from './coupleCreate'
@@ -35,16 +35,11 @@ const CoupleList = () => {
     }, [])
 
     if (state){
-      return <p>Loading...</p>
+      return <Loader />
     }
 
     return (
           <>
-            <div className='container sm bg-slate-400'>
-              <Image src={session?.user?.image!} layout="responsive" width="50" height="50" />
-              <p>{session?.user?.name}</p>
-              <p className='text-gray-500'>{session?.user?.email}</p>
-            </div>
             {data?.map((couple) => {
               return (
                 <div key={couple.id.toString()} >

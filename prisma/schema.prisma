@@ -75,7 +75,6 @@ model Couple {
   joinerId  String?
   content   CoupleContent[]
   active    Boolean         @default(false)
-  activeURL String          @default(uuid())
 }
 
 model CoupleContent {

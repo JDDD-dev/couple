@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth/next";
 import { PrismaClient } from "../../../prisma/generated/client";
 import { authOptions } from "../auth/[...nextauth]";
-import sgMail from "@sendgrid/mail"
 
 const prisma = new PrismaClient()
 
@@ -34,10 +33,10 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
                 where: {
                     OR: [
                         {
-                            creatorId: id.toString()
+                            creatorId: id?.toString()
                         },
                         {
-                            joinerId: id.toString()
+                            joinerId: id?.toString()
                         }
                     ]
                 }
@@ -48,22 +47,14 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
                 await prisma.couple.create({
                     data: {
                         creatorId: user?.id!,
-                        joinerId: id.toString()
+                        joinerId: id?.toString()
                     }
                 })
                 const userEmail = await prisma.user.findUnique({
                     where: {
-                        id: id.toString()
+                        id: id?.toString()
                     }
                 })
-                sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
-                const msg = {
-                    to: userEmail?.email!,
-                    from: 'jesuspinolucena@gmail.com',
-                    subject: 'A Wild Couple ❤️ request Appears!',
-                    html: '<strong>A new Couple request was send by ' + user?.email + '</strong><a href="http://localhost:3000"></a>',
-                };
-                await sgMail.send(msg)
                 res.status(200).send("Couple created")
             }
             

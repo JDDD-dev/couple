@@ -1,3 +1,4 @@
+import { Button } from "@mantine/core"
 import { useState } from "react"
 
 const CreateCouple = () => { 
@@ -9,7 +10,7 @@ const CreateCouple = () => {
     }
 
     return (
-        <button className="">Create new Couple</button>
+        <Button>Create new Couple</Button>
     )
 }
 
