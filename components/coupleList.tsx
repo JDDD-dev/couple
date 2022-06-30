@@ -1,4 +1,4 @@
-import { Loader } from '@mantine/core'
+import { Divider, Loader, Stack } from '@mantine/core'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
@@ -39,16 +39,18 @@ const CoupleList = () => {
     }
 
     return (
-          <>
+          <Stack justify="flex-start" spacing="lg">
             {data?.map((couple) => {
               return (
                 <div key={couple.id.toString()} >
                   <CoupleCard couple={couple} id={id} />
+                  <Divider />
                 </div>
               )
             })}
-            {data?.length! < 3 && <CreateCouple />}
-          </>
+          </Stack>
+
+
     )
 }
 
