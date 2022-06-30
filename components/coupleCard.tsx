@@ -17,6 +17,7 @@ type User = {
 const CoupleCard = ({couple, id}: Props) => {
     const theme = useMantineTheme()
     const [userData, setUserData] = useState<User>()
+    
     useEffect(() => {
         const fetchData = async () => {
             let user

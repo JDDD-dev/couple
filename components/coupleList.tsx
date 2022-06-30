@@ -1,8 +1,7 @@
-import { Divider, Loader, Stack } from '@mantine/core'
+import { Divider, Loader, Skeleton, Stack } from '@mantine/core'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
-import CreateCouple from './coupleCreate'
 
 export type ResponseCouples = {
   id: String
@@ -12,13 +11,11 @@ export type ResponseCouples = {
 }
 
 const CoupleList = () => { 
-    const { data: session } = useSession()
 
-    const [state, setState] = useState(false)
+    const [state, setState] = useState(true)
     const [data, setData] = useState<ResponseCouples[]>()
     const [id, setId] = useState("")
     useEffect(() => {
-      setState(true)
       const fetchData = async () => {
         const dataResponse = await fetch('api/couples/getCouples')
         const jsondata: ResponseCouples[] = await dataResponse.json()
@@ -35,7 +32,7 @@ const CoupleList = () => {
     }, [])
 
     if (state){
-      return <Loader />
+      return <Skeleton height="50" circle mb="xl" />
     }
 
     return (
