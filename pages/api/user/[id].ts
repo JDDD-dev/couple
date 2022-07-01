@@ -13,7 +13,12 @@ export default async function handlerGetUserId(req: NextApiRequest, res: NextApi
                     id: id.toString()
                 }
             })
-            res.status(200).send(user)
+
+            if (user){
+                res.status(200).send(user)
+            }else{
+                res.status(400).send("User not exits")
+            }
         }else{
             res.status(400).send("Not Id in the Params")
         }
