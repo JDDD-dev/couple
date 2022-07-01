@@ -47,15 +47,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String          @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?         @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  owns          Couple[]  @relation(name: "creator")
-  joins         Couple[]  @relation(name: "joiner")
+  owns          Couple[]        @relation(name: "creator")
+  joins         Couple[]        @relation(name: "joiner")
+  sendFReq      CoupleRequest[] @relation(name: "sendFReq")
+  receiveFReq   CoupleRequest[] @relation(name: "receiveFReq")
 }
 
 model VerificationToken {
@@ -83,4 +85,13 @@ model CoupleContent {
   coupleId Int
   time     DateTime @default(now())
   content  String
+}
+
+model CoupleRequest {
+  id         Int      @id @default(autoincrement())
+  created    DateTime @default(now())
+  sender     User     @relation(fields: [senderId], references: [id], onDelete: Cascade, name: "sendFReq")
+  senderId   String
+  receiver   User     @relation(fields: [receiverId], references: [id], onDelete: Cascade, name: "receiveFReq")
+  receiverId String
 }
