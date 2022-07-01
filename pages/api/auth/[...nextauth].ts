@@ -4,7 +4,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import DiscordProvider from 'next-auth/providers/discord'
 import GoogleProvider from 'next-auth/providers/google'
 
-const prisma: PrismaClient = new PrismaClient()
+export const prisma: PrismaClient = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),

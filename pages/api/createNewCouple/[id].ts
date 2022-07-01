@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth/next";
-import { PrismaClient } from "../../../prisma/generated/client";
-import { authOptions } from "../auth/[...nextauth]";
-
-const prisma = new PrismaClient()
+import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerPostCouples(req: NextApiRequest, res: NextApiResponse){
     const session = await unstable_getServerSession(req, res, authOptions)
