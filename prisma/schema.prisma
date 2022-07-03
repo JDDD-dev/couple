@@ -18,7 +18,7 @@ generator dbml {
   output              = "./dbml"
   outputName          = "schema.dbml"
   projectName         = "Couple"
-  projectDatabaseType = "MySql-PlanetScale"
+  projectDatabaseType = "MySQL-PlanetScale"
 }
 
 model Account {

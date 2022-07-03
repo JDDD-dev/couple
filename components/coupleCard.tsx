@@ -1,17 +1,10 @@
 import { Avatar, Box, Group, UnstyledButton, Text, useMantineTheme } from "@mantine/core"
 import { useEffect, useState } from "react"
-import { ResponseCouples } from "./coupleList"
+import { CouplesResponse, User } from "../lib/types"
 
 type Props = {
-    couple: ResponseCouples
+    couple: CouplesResponse
     id: String
-}
-
-type User = {
-    name: String
-    id: String
-    image: string
-    email: string
 }
 
 const CoupleCard = ({couple, id}: Props) => {
@@ -22,16 +15,15 @@ const CoupleCard = ({couple, id}: Props) => {
         const fetchData = async () => {
             let user
             if (couple.creatorId == id){
-                user = await fetch("/api/user/" + couple.joinerId)
+                user = couple.joiner
             }else{
-                user = await fetch("/api/user/" + couple.creatorId)
+                user = couple.creator
             }
-            const userJson = await user.json()
-            setUserData(userJson)
+            setUserData(user)
         }
         
         fetchData().catch(console.error)
-    }, [couple.creatorId, couple.joinerId, id])
+    }, [couple.creator, couple.creatorId, couple.joiner, couple.joinerId, id])
 
 
     return (

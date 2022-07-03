@@ -4,10 +4,10 @@ import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerPostCouples(req: NextApiRequest, res: NextApiResponse){
     const session = await unstable_getServerSession(req, res, authOptions)
-    if (session && session.user && session.user.email){
+    if (session){
         const user = await prisma.user.findUniqueOrThrow({
             where: {
-                email: session.user.email
+                id: session.userId
             },
             include: {
                 joins: true,

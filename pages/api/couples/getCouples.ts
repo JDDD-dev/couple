@@ -4,18 +4,24 @@ import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerGetCouples(req: NextApiRequest, res: NextApiResponse): Promise<void>{
     const session = await unstable_getServerSession(req, res, authOptions)
-    if (session && session.user && session.user.email){
-        const user = await prisma.user.findUniqueOrThrow({
+    if (session){
+        const couples = await prisma.couple.findMany({
             where: {
-                email: session.user.email
+                OR: [
+                    {
+                        creatorId: session.userId
+                    },
+                    {
+                        joinerId: session.userId
+                    }
+                ]
             },
             include: {
-                owns: true,
-                joins: true,
+                creator: true,
+                joiner: true
             }
         })
 
-            const couples = user.owns.concat(user.joins)
             res.status(200).send(JSON.stringify(couples))
     }else{
         res.status(403).send({

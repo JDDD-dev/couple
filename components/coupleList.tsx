@@ -1,14 +1,8 @@
 import { Divider, Skeleton, Stack } from '@mantine/core'
 import { Session } from 'next-auth'
 import { useEffect, useState } from 'react'
+import { CouplesResponse } from '../lib/types'
 import CoupleCard from './coupleCard'
-
-export type ResponseCouples = {
-  id: String
-  creatorId: String
-  joinerId: String | undefined
-  created: String
-}
 
 type Props = {
   session: Session
@@ -17,11 +11,11 @@ type Props = {
 const CoupleList = ({session}: Props) => { 
 
     const [state, setState] = useState(true)
-    const [data, setData] = useState<ResponseCouples[]>()
+    const [data, setData] = useState<CouplesResponse[]>()
     useEffect(() => {
       const fetchData = async () => {
         const dataResponse = await fetch('api/couples/getCouples')
-        const jsondata: ResponseCouples[] = await dataResponse.json()
+        const jsondata = await dataResponse.json()
         setData(jsondata)
         setState(false)
       }
@@ -30,7 +24,7 @@ const CoupleList = ({session}: Props) => {
     }, [])
 
     if (state){
-      return <Skeleton height="50" circle mb="xl" />
+      return <Skeleton />
     }
 
     return (
@@ -44,8 +38,6 @@ const CoupleList = ({session}: Props) => {
               )
             })}
           </Stack>
-
-
     )
 }
 
