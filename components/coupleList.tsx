@@ -3,6 +3,7 @@ import { Session } from 'next-auth'
 import { useEffect, useState } from 'react'
 import { CouplesResponse } from '../lib/types'
 import CoupleCard from './coupleCard'
+import CreateCouple from './coupleCreate'
 
 type Props = {
   session: Session
@@ -24,7 +25,12 @@ const CoupleList = ({session}: Props) => {
     }, [])
 
     if (state){
-      return <Skeleton />
+      return (
+        <>
+          <Skeleton height={50} circle mb="xl" />
+          <Skeleton height={8} radius="xl" />
+        </>
+      )
     }
 
     return (
@@ -37,6 +43,7 @@ const CoupleList = ({session}: Props) => {
                 </div>
               )
             })}
+            {data && data.length <= 2 && <CreateCouple />}
           </Stack>
     )
 }

@@ -1,12 +1,17 @@
-import { AppShell, Button, Header, Navbar, Text } from '@mantine/core'
+import { AppShell, Button, Header, Navbar } from '@mantine/core'
 import type { NextPage } from 'next'
 import { signIn, useSession } from 'next-auth/react'
 import CoupleList from '../components/coupleList'
+import CouplePanel from '../components/couplePanel'
 import HeaderData from '../components/headerData'
 import UserShell from '../components/user'
 
 const Home: NextPage = () => {
   const { data: session } = useSession()
+
+  const changePanel = () => {
+
+  }
 
   if (session){
     return (
@@ -17,7 +22,7 @@ const Home: NextPage = () => {
         styles={(theme) => ({
           main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
         })}>
-        {<Text>Couple data goes here</Text>}
+        {<CouplePanel />}
       </AppShell>
       </>
     )

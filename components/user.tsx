@@ -1,7 +1,7 @@
 import { Avatar, Box, Group, UnstyledButton, useMantineTheme, Text, Menu, Divider } from "@mantine/core"
 import { Session } from "next-auth"
 import { signOut } from "next-auth/react"
-import { Logout, Settings } from "tabler-icons-react"
+import { Friends, Logout, Settings } from "tabler-icons-react"
 
 type Props = {
     session: Session
@@ -55,6 +55,11 @@ const UserShell = ({session}: Props) => {
       <Menu.Item
         icon={<Settings />}>
         Settings
+      </Menu.Item>
+      <Divider />
+      <Menu.Item
+        icon={<Friends />}>
+        Couple Requests
       </Menu.Item>
       <Divider />
       <Menu.Item
