@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['cdn.discordapp.com', 'lh3.googleusercontent.com']
+  experimental: {
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: '**.googleusercontent.com'
+        }
+      ]
+    }
   }
 }
 

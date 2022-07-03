@@ -1,5 +1,5 @@
-import { Divider, Loader, Skeleton, Stack } from '@mantine/core'
-import { useSession } from 'next-auth/react'
+import { Divider, Skeleton, Stack } from '@mantine/core'
+import { Session } from 'next-auth'
 import { useEffect, useState } from 'react'
 import CoupleCard from './coupleCard'
 
@@ -10,21 +10,19 @@ export type ResponseCouples = {
   created: String
 }
 
-const CoupleList = () => { 
+type Props = {
+  session: Session
+}
+
+const CoupleList = ({session}: Props) => { 
 
     const [state, setState] = useState(true)
     const [data, setData] = useState<ResponseCouples[]>()
-    const [id, setId] = useState("")
     useEffect(() => {
       const fetchData = async () => {
         const dataResponse = await fetch('api/couples/getCouples')
         const jsondata: ResponseCouples[] = await dataResponse.json()
         setData(jsondata)
-        
-
-        const idResponse = await fetch('api/couples/getUserId')
-        const jsonId: string = await idResponse.json()
-        setId(jsonId) 
         setState(false)
       }
 
@@ -40,7 +38,7 @@ const CoupleList = () => {
             {data?.map((couple) => {
               return (
                 <div key={couple.id.toString()} >
-                  <CoupleCard couple={couple} id={id} />
+                  <CoupleCard couple={couple} id={session.userId} />
                   <Divider />
                 </div>
               )
