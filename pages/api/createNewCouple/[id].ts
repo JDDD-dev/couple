@@ -10,44 +10,59 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
                 email: session.user.email
             },
             include: {
-                owns: true,
                 joins: true,
+                owns: true,
                 sendFReq: true,
                 receiveFReq: true,
             }
         })
-        if ((user.joins.length + user.owns.length) > 2){
-            res.status(301).send("You have the maximum amount of couples permited")
-        }else if (user.owns.length + user.joins.length + user.receiveFReq.length + user.sendFReq.length > 2){
-            res.status(400).send("You have between Couples and Couples Request more than 3")
-        }else{
-            const { id } = req.query
-    
-            if (!id){
-                 res.status(400).send("Not Id in the Params")
-            }else{
-                const userJoiner = await prisma.user.findUniqueOrThrow({
-                    where: {
-                        id: id.toString()
-                    },
-                    include: {
-                         owns: true,
-                        joins: true,
-                    }
-                })
-                if (userJoiner.owns.length + userJoiner.joins.length > 2){
-                    res.status(302).send("The joiner account has already 3 couples")
-                }else{
-                    await prisma.coupleRequest.create({
-                        data: {
-                            senderId: user.id,
-                            receiverId: id.toString(),
-                        }
-                    })
-                    res.status(200).send("Friend Request sent")
-                }
-            }
+        if ((user.owns.length + user.joins.length) > 2){
+            res.status(400).send("You have the maximum amount of couples permited")
+            return
         }
+
+        const { id } = req.query
+    
+        if (!id){
+            res.status(400).send("Not Id in the Params")
+            return
+        }
+        
+        if (user.owns.find((couple) => {
+            couple.joinerId == id
+        }) != undefined){
+            res.status(400).send("You are already in a Couple with this User")
+            return
+        }
+
+        if (user.joins.find((couple) => {
+            couple.creatorId == id
+        }) != undefined){
+            res.status(400).send("You are already in a Couple with this User")
+            return
+        }
+
+        if (user.sendFReq.find((fRequest) => {
+            fRequest.receiverId == id
+        }) != undefined){
+            res.status(400).send("You already sent a Couple Request to this User")
+            return
+        }
+
+        if (user.receiveFReq.find((fRequest) => {
+            fRequest.senderId == id
+        }) != undefined){
+            res.status(400).send("You already have a Couple Request from this User")
+            return
+        }
+
+        await prisma.coupleRequest.create({
+            data: {
+                senderId: user.id,
+                receiverId: id.toString(),
+            }
+        })
+            res.status(200).send("Friend Request sent")
     }else{
         res.status(403).send("Not logged in")
     }
