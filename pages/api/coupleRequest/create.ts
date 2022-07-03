@@ -21,7 +21,7 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
             return
         }
 
-        const { id } = req.query
+        const id = req.body.id
     
         if (!id){
             res.status(400).send("Not Id in the Params")
