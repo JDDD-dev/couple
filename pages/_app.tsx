@@ -1,10 +1,10 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
-import Head from 'next/head'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 import { NotificationsProvider } from '@mantine/notifications'
+import Head from 'next/head'
 
 function MyApp({ 
   Component,
@@ -21,19 +21,20 @@ function MyApp({
   return (
     <>
       <Head>
-        <title>Couple</title>
-        <meta name='viewport' />
+      <title>Couple</title>
+      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
+
       <SessionProvider session={session}>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-          <MantineProvider withNormalizeCSS withGlobalStyles theme={{ colorScheme }}>
+          <MantineProvider withNormalizeCSS withGlobalStyles theme={{ colorScheme, fontSizes: { xl: 100 } }}>
             <NotificationsProvider autoClose={4000}>
-              <Component {...pageProps} />
+                <Component {...pageProps} />
             </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </SessionProvider>
-      </>
+    </>
   )
 }
 
