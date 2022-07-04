@@ -7,14 +7,32 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
     if (session){
 
         const user = await prisma.user.findUniqueOrThrow({
+            select: {
+                email: true,
+                id: true,
+                owns: {
+                    select: {
+                        joinerId: true
+                    }
+                },
+                joins: {
+                    select: {
+                        creatorId: true
+                    }
+                },
+                receiveFReq: {
+                    select: {
+                        senderId: true
+                    }
+                },
+                sendFReq: {
+                    select: {
+                        receiverId: true
+                    }
+                }
+            },
             where: {
                 id: session.userId
-            },
-            include: {
-                joins: true,
-                owns: true,
-                sendFReq: true,
-                receiveFReq: true,
             }
         })
         if ((user.owns.length + user.joins.length) > 2){

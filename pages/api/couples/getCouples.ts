@@ -7,6 +7,24 @@ export default async function handlerGetCouples(req: NextApiRequest, res: NextAp
     if (session){
         
         const couples = await prisma.couple.findMany({
+            select: {
+                id: true,
+                creatorId: true,
+                creator: {
+                    select: {
+                        email: true,
+                        name: true,
+                        image: true
+                    }
+                },
+                joiner: {
+                    select: {
+                        email: true,
+                        name: true,
+                        image: true
+                    }
+                }
+            },
             where: {
                 OR: [
                     {
@@ -16,10 +34,6 @@ export default async function handlerGetCouples(req: NextApiRequest, res: NextAp
                         joinerId: session.userId
                     }
                 ]
-            },
-            include: {
-                creator: true,
-                joiner: true
             }
         })
 

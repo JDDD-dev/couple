@@ -16,6 +16,10 @@ export default async function handlerActivateCouple(req: NextApiRequest, res: Ne
     }
 
     const cRequest = await prisma.coupleRequest.findUniqueOrThrow({
+        select: {
+            receiverId: true,
+            senderId: true
+        },
         where: {
             id: req.body.id
         }

@@ -23,7 +23,7 @@ const CoupleCard = ({couple, id}: Props) => {
         }
         
         fetchData().catch(console.error)
-    }, [couple.creator, couple.creatorId, couple.joiner, couple.joinerId, id])
+    }, [couple.creator, couple.creatorId, couple.joiner, id])
 
 
     return (
