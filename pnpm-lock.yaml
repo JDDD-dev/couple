@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@mantine/core': ^4.2.12
   '@mantine/dropzone': ^4.2.12
+  '@mantine/form': ^4.2.12
   '@mantine/hooks': ^4.2.12
   '@mantine/next': ^4.2.12
   '@mantine/notifications': ^4.2.12
@@ -29,6 +30,7 @@ specifiers:
 dependencies:
   '@mantine/core': 4.2.12_adnwhtvvyvzgu5gbxn2nw5fiqe
   '@mantine/dropzone': 4.2.12_n5fi23fjjzlwcbqhnnpdtjftw4
+  '@mantine/form': 4.2.12_react@18.2.0
   '@mantine/hooks': 4.2.12_react@18.2.0
   '@mantine/next': 4.2.12_ta6nrorpwm5kquu7s6sy3e4h5m
   '@mantine/notifications': 4.2.12_n5fi23fjjzlwcbqhnnpdtjftw4
@@ -489,6 +491,14 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-dropzone: 11.7.1_react@18.2.0
+    dev: false
+
+  /@mantine/form/4.2.12_react@18.2.0:
+    resolution: {integrity: sha512-CnpkzZr7VVekN3gg/4fMG9DYEqDsOg1jJGGxFKZ7GjR4liwEOsL3FvC+Szi3OlI0ytfLFOg8zU8RCoEO758sQA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@mantine/hooks/4.2.12_react@18.2.0:

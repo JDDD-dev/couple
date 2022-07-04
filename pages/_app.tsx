@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import Head from 'next/head'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { NotificationsProvider } from '@mantine/notifications'
 
 function MyApp({ 
   Component,
@@ -26,7 +27,9 @@ function MyApp({
       <SessionProvider session={session}>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
           <MantineProvider withNormalizeCSS withGlobalStyles theme={{ colorScheme }}>
-            <Component {...pageProps} />
+            <NotificationsProvider autoClose={4000}>
+              <Component {...pageProps} />
+            </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </SessionProvider>

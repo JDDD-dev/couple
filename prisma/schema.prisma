@@ -60,6 +60,8 @@ model User {
   joins         Couple[]        @relation(name: "joiner")
   sendFReq      CoupleRequest[] @relation(name: "sendFReq")
   receiveFReq   CoupleRequest[] @relation(name: "receiveFReq")
+
+  @@index([email])
 }
 
 model VerificationToken {

@@ -69,9 +69,7 @@ const UserShell = ({session}: Props) => {
         Logout
       </Menu.Item>
       </Menu>
-      
     </Group>
-    
     )
 }
 

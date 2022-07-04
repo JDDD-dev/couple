@@ -5,6 +5,7 @@ import { authOptions, prisma } from "../auth/[...nextauth]";
 export default async function handlerPostCouples(req: NextApiRequest, res: NextApiResponse){
     const session = await unstable_getServerSession(req, res, authOptions)
     if (session){
+
         const user = await prisma.user.findUniqueOrThrow({
             where: {
                 id: session.userId
@@ -21,36 +22,52 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
             return
         }
 
-        const id = req.body.id
+        const email: string = JSON.parse(req.body)
     
-        if (!id){
-            res.status(400).send("Not Id in the Params")
+        if (!email){
+            res.status(400).send("Not Email in the Params")
+            return
+        }
+
+        if (user.email == email){
+            res.status(400).send("You can't add yourself as a Couple")
+            return
+        }
+
+        const id = await prisma.user.findUnique({
+            where: {
+                email: email
+            },
+            select: {
+                id: true
+            }
+        })
+
+        if (id == null){
+            res.status(400).send("This User does not exits")
             return
         }
         
-        if (user.owns.find((couple) => {
-            couple.joinerId == id
-        }) != undefined){
+
+        if (user.owns.find(couple => couple.joinerId == id.id) !== undefined) {
             res.status(400).send("You are already in a Couple with this User")
             return
         }
 
-        if (user.joins.find((couple) => {
-            couple.creatorId == id
-        }) != undefined){
+        if (user.joins.find(couple => couple.creatorId == id.id) !== undefined){
             res.status(400).send("You are already in a Couple with this User")
             return
         }
 
         if (user.sendFReq.find((fRequest) => {
-            fRequest.receiverId == id
+            fRequest.receiverId == id.id
         }) != undefined){
             res.status(400).send("You already sent a Couple Request to this User")
             return
         }
 
         if (user.receiveFReq.find((fRequest) => {
-            fRequest.senderId == id
+            fRequest.senderId == id.id
         }) != undefined){
             res.status(400).send("You already have a Couple Request from this User")
             return
@@ -59,7 +76,7 @@ export default async function handlerPostCouples(req: NextApiRequest, res: NextA
         await prisma.coupleRequest.create({
             data: {
                 senderId: user.id,
-                receiverId: id.toString(),
+                receiverId: id.id,
             }
         })
             res.status(200).send("Friend Request sent")
