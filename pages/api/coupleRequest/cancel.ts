@@ -32,19 +32,11 @@ export default async function handlerCancelCoupleRequest(req: NextApiRequest, re
         return
     }
 
-    await prisma.couple.create({
-        data: {
-            active: true,
-            joinerId: cRequest.receiverId,
-            creatorId: cRequest.senderId,
-        }
-    })
-
     await prisma.coupleRequest.delete({
         where: {
             id: id
         }
     })
 
-    res.status(200).send("Couple Created!")
+    res.status(200).send("Couple request Cancelled")
 }

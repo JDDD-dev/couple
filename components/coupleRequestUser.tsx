@@ -17,6 +17,7 @@ const denyRequest = async (id: string) => {
 }
 
 const CoupleRequestUser = ({sender, id} : CoupleRequestResponse) => {
+
     return (
         <Group>
             <Avatar src={sender.image} radius="xl" />
