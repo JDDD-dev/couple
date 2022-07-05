@@ -1,12 +1,17 @@
-import { Center } from "@mantine/core"
-import Image from "next/image"
+import { Center, Text } from "@mantine/core"
+import { Session } from "next-auth"
 
-const CouplePanel = () => {
+type Props = {
+    session: Session
+  }
+  
+
+const CouplePanel = ({session}: Props) => {
     return(
         <Center sx={{
             height: '100%'
         }}>
-            <Image src="/heart.svg" height="60" width="60" alt="" />
+            <Text>Welcome back, {session.user?.name}</Text>
         </Center>
     )
 }

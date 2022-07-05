@@ -12,7 +12,9 @@ const UserShell = ({session}: Props) => {
 
     return (
     <Group>
-      <Menu withArrow placement="center" position="top" control={
+      <Menu withArrow placement="center" position="top" sx={{
+        width: '100%'
+      }} control={
         <Box
         sx={{
           paddingTop: theme.spacing.sm,
