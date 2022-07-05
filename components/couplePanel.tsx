@@ -1,17 +1,33 @@
-import { Center, Text } from "@mantine/core"
+import { Button, Center, Grid, Stack, Text } from "@mantine/core"
 import { Session } from "next-auth"
 
 type Props = {
     session: Session
+    panelState: string
   }
   
 
-const CouplePanel = ({session}: Props) => {
+const CouplePanel = ({session, panelState}: Props) => {
+
+    if (panelState == 'coupleRequest'){
+        return (
+            <Text>Couples request</Text>
+        )
+    }
+
     return(
         <Center sx={{
             height: '100%'
         }}>
-            <Text>Welcome back, {session.user?.name}</Text>
+            <Stack align="center" spacing="lg">
+                <Text>Welcome back, {session.user?.name}!</Text>
+                <Grid justify="center">
+                    <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
+                    <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
+                    <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
+                    <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
+                </Grid>
+            </Stack>
         </Center>
     )
 }

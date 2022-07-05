@@ -5,9 +5,10 @@ import { Friends, Logout, Settings } from "tabler-icons-react"
 
 type Props = {
     session: Session
+    setPanelState: any
 }
 
-const UserShell = ({session}: Props) => {
+const UserShell = ({session, setPanelState}: Props) => {
     const theme = useMantineTheme()
 
     return (
@@ -60,6 +61,7 @@ const UserShell = ({session}: Props) => {
       </Menu.Item>
       <Divider />
       <Menu.Item
+        onClick={() => setPanelState('coupleRequest')}
         icon={<Friends />}>
         Couple Requests
       </Menu.Item>
