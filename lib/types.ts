@@ -12,3 +12,13 @@ export type User = {
     image: string
     name: string
 }
+
+export type CoupleRequestResponse = {
+    sender: {
+        email: string,
+        id: string,
+        image: string,
+        name: string
+    },
+    id: string
+}

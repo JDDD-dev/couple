@@ -1,5 +1,6 @@
 import { Button, Center, Grid, Stack, Text } from "@mantine/core"
 import { Session } from "next-auth"
+import CoupleRequest from "./coupleRequest"
 
 type Props = {
     session: Session
@@ -10,9 +11,7 @@ type Props = {
 const CouplePanel = ({session, panelState}: Props) => {
 
     if (panelState == 'coupleRequest'){
-        return (
-            <Text>Couples request</Text>
-        )
+        return <CoupleRequest />
     }
 
     return(

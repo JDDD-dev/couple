@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions, prisma } from "../auth/[...nextauth]";
 
-export default async function handlerActivateCouple(req: NextApiRequest, res: NextApiResponse) {
+export default async function handlerCancelCoupleRequest(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         res.status(405).send({ message: 'Only POST requests allowed' })
         return

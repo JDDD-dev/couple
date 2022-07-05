@@ -18,7 +18,7 @@ const Home = ({session}: InferGetServerSidePropsType<typeof getServerSideProps>)
       <>
         <AppShell padding="md"
           navbar={<Navbar width={{ base: 300 }} p="xs">{<><Navbar.Section grow mt="md"><CoupleList session={session} /></Navbar.Section><Navbar.Section><UserShell session={session} setPanelState={setPanelState} /></Navbar.Section></>}</Navbar>}
-          header={<Header height={80} p="xs" onClick={() => setPanelState('home')} >{<HeaderData />}</Header>}
+          header={<Header height={80} p="xs" >{<HeaderData />}</Header>}
           styles={(theme) => ({
             main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
           })}>
