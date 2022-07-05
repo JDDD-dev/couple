@@ -1,6 +1,6 @@
 import { AppShell, Button, Center, Header, Navbar } from '@mantine/core'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { Session, unstable_getServerSession } from 'next-auth'
+import { unstable_getServerSession } from 'next-auth'
 import { signIn } from 'next-auth/react'
 import CoupleList from '../components/coupleList'
 import CouplePanel from '../components/couplePanel'
