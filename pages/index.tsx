@@ -1,15 +1,16 @@
-import { AppShell, Button, Center, Header, Loader, Navbar, Text, Stack } from '@mantine/core'
-import type { NextPage } from 'next'
-import { signIn, useSession } from 'next-auth/react'
+import { AppShell, Button, Center, Header, Navbar } from '@mantine/core'
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { Session, unstable_getServerSession } from 'next-auth'
+import { signIn } from 'next-auth/react'
 import CoupleList from '../components/coupleList'
 import CouplePanel from '../components/couplePanel'
 import HeaderData from '../components/headerData'
 import UserShell from '../components/user'
+import { authOptions } from './api/auth/[...nextauth]'
 
-const Home: NextPage = () => {
-  const { data: session, status } = useSession()
+const Home = ({session}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 
-  if (status == 'authenticated'){
+  if (session){
     return (
       <>
         <AppShell padding="md"
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
         </AppShell>
       </>
     )
-  }else if (status == 'unauthenticated'){
+  }else{
     return (
       <>
         <Center sx={{
@@ -34,21 +35,18 @@ const Home: NextPage = () => {
         </Center>
       </>
     )
-  }else{
-    return (
-      <>
-        <Center inline sx={{
-          height: '100vh',
-          width: '100vw'
-        }}>
-          <Stack align="center" spacing="xl">
-            <Text size="xl" weight="bold" variant="gradient" gradient={{ from: '#F03E3E', to: '#FFE066', deg: 45}}>Couple-APP</Text>
-            <Loader size={100} variant="bars" />
-          </Stack>
-        </Center>
-      </>
-    )
   }
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await unstable_getServerSession(context.req, context.res, authOptions)
+
+    return {
+      props: {
+        session
+      }
+    }
+
 }
 
 export default Home
