@@ -7,22 +7,11 @@ import CreateCouple from './coupleCreate'
 
 type Props = {
   session: Session
+  state: Boolean
+  usersData: CouplesResponse[] | undefined
 }
 
-const CoupleList = ({session}: Props) => { 
-
-    const [state, setState] = useState(true)
-    const [data, setData] = useState<CouplesResponse[]>()
-    useEffect(() => {
-      const fetchData = async () => {
-        const dataResponse = await fetch('api/couples/getCouples')
-        const jsondata = await dataResponse.json()
-        setData(jsondata)
-        setState(false)
-      }
-
-      fetchData().catch(console.error)
-    }, [])
+const CoupleList = ({session, state, usersData}: Props) => { 
 
     if (state){
       return (
@@ -35,7 +24,7 @@ const CoupleList = ({session}: Props) => {
 
     return (
           <Stack justify="flex-start" spacing="lg">
-            {data?.map((couple) => {
+            {usersData?.map((couple) => {
               return (
                 <div key={couple.id.toString()} >
                   <CoupleCard couple={couple} id={session.userId} />
@@ -43,7 +32,7 @@ const CoupleList = ({session}: Props) => {
                 </div>
               )
             })}
-            {data && data.length <= 2 && <CreateCouple />}
+            {usersData && usersData.length <= 2 && <CreateCouple />}
           </Stack>
     )
 }

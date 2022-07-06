@@ -2,21 +2,39 @@ import { ActionIcon, Avatar, Group, Text } from "@mantine/core"
 import { Check, X } from "tabler-icons-react"
 import { CoupleRequestResponse } from "../lib/types"
 
-const acceptRequest = async (id: string) => {
-    await fetch('api/coupleRequest/activate', {
-        method: 'POST',
-        body: JSON.stringify(id)
-    })
+type Props = {
+    sender: {
+        email: string,
+        id: string,
+        image: string,
+        name: string
+    }
+    id: string
+    cRequestArray: CoupleRequestResponse[]
+    setCRequest: Function
 }
 
-const denyRequest = async (id: string) => {
-    await fetch('api/coupleRequest/cancel', {
-        method: 'POST',
-        body: JSON.stringify(id)
-    })
-}
+const CoupleRequestUser = ({sender, id, cRequestArray, setCRequest}: Props) => {
 
-const CoupleRequestUser = ({sender, id} : CoupleRequestResponse) => {
+    const acceptRequest = async (id: string) => {
+        await fetch('api/coupleRequest/activate', {
+            method: 'POST',
+            body: JSON.stringify(id)
+        })
+        const newArray = cRequestArray.filter(cRequest => cRequest.id != id)
+        console.log(newArray)
+        setCRequest(newArray)
+    }
+    
+    const denyRequest = async (id: string) => {
+        await fetch('api/coupleRequest/cancel', {
+            method: 'POST',
+            body: JSON.stringify(id)
+        })
+        const newArray = cRequestArray.filter(cRequest => cRequest.id != id)
+        console.log(newArray)
+        setCRequest(newArray)
+    }
 
     return (
         <Group>
