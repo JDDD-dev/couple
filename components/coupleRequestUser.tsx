@@ -12,9 +12,10 @@ type Props = {
     id: string
     cRequestArray: CoupleRequestResponse[]
     setCRequest: Function
+    setState: Function
 }
 
-const CoupleRequestUser = ({sender, id, cRequestArray, setCRequest}: Props) => {
+const CoupleRequestUser = ({sender, id, cRequestArray, setCRequest, setState}: Props) => {
 
     const acceptRequest = async (id: string) => {
         await fetch('api/coupleRequest/activate', {
@@ -22,7 +23,7 @@ const CoupleRequestUser = ({sender, id, cRequestArray, setCRequest}: Props) => {
             body: JSON.stringify(id)
         })
         const newArray = cRequestArray.filter(cRequest => cRequest.id != id)
-        console.log(newArray)
+        setState(true)
         setCRequest(newArray)
     }
     

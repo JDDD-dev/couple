@@ -6,15 +6,14 @@ import CoupleRequest from "./coupleRequest"
 type Props = {
     session: Session
     panelState: string
-    usersData: CouplesResponse[] | undefined
-    setUsersData: Function
+    setState: Function
   }
   
 
-const CouplePanel = ({session, panelState, usersData, setUsersData}: Props) => {
+const CouplePanel = ({session, panelState, setState}: Props) => {
 
     if (panelState == 'coupleRequest'){
-        return <CoupleRequest usersData={usersData} setUsersData={setUsersData} />
+        return <CoupleRequest setState={setState} />
     }
 
     return(

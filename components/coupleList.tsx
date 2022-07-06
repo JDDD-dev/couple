@@ -1,6 +1,5 @@
 import { Divider, Skeleton, Stack } from '@mantine/core'
 import { Session } from 'next-auth'
-import { useEffect, useState } from 'react'
 import { CouplesResponse } from '../lib/types'
 import CoupleCard from './coupleCard'
 import CreateCouple from './coupleCreate'

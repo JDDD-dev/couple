@@ -17,25 +17,25 @@ const Home = ({session}: InferGetServerSidePropsType<typeof getServerSideProps>)
   const [state, setState] = useState(true)
   
   useEffect(() => {
-    if (session){
+    if (session && state){
       (async () => {
         const jsondata = await (await fetch('api/couples/getCouples')).json()
         setUsersData(jsondata)
         setState(false)
       })()
     }
-  }, [session])
+  }, [session, state])
 
   if (session){
     return (
       <>
         <AppShell padding="md"
           navbar={<Navbar width={{ base: 300 }} p="xs">{<><Navbar.Section grow mt="md"><CoupleList session={session} state={state} usersData={usersData} /></Navbar.Section><Navbar.Section><UserShell session={session} setPanelState={setPanelState} /></Navbar.Section></>}</Navbar>}
-          header={<Header height={80} p="xs" >{<HeaderData />}</Header>}
+          header={<Header height={80} p="xs" onClick={() => setPanelState('home')}>{<HeaderData />}</Header>}
           styles={(theme) => ({
             main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
           })}>
-          {<CouplePanel session={session} panelState={panelState} usersData={usersData} setUsersData={setUsersData} />}
+          {<CouplePanel session={session} panelState={panelState} setState={setState} />}
         </AppShell>
       </>
     )
