@@ -69,7 +69,7 @@ importers:
       typescript: 4.7.4
       vitest: 0.17.1_jsdom@20.0.0
 
-  apps/docs:
+  apps/web:
     specifiers:
       vitepress: 1.0.0-alpha.4
       vue: ^3.2.37
