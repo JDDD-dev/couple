@@ -10,11 +10,11 @@ hero:
     alt: Couple
   actions:
     - theme: brand
-      text: Alpha Access
-      link: /guide/get-alpha-access
+      text: What is Couple?
+      link: /what-couple
     - theme: alt
-      text: Features
-      link: /next-features
+      text: Alpha Access
+      link: /get-alpha-access
 
 features:
     - title: "Couples"
