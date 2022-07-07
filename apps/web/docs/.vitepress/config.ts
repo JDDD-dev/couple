@@ -15,6 +15,7 @@ export default defineConfig({
         footer: {
             message: 'Made with ♥ by JD',
             copyright: 'Copyright © 2022-present JD'
-        }
+        },
+        logo: "/heart.svg"
     }
 })
