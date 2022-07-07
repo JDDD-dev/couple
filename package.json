@@ -3,7 +3,8 @@
     "scripts": {
       "build": "turbo run build",
       "dev": "turbo run dev --parallel --no-cache",
-      "lint": "turbo run lint"
+      "lint": "turbo run lint",
+      "docs": "turbo run dev --filter=web --parallel --no-cache"
     },
     "devDependencies": {
       "eslint-config-custom": "workspace:*",
