@@ -41,7 +41,7 @@ export default defineConfig({
                 items: [
                     { text: 'Working', link: '/development/working' },
                     { text: 'TODO', link: '/development/todo' },
-                    { text: 'Future Ideas', link: '/development/future-ideas' }
+                    { text: 'Next Steps', link: '/development/next-features' }
                 ]
             }
         ]
