@@ -73,22 +73,25 @@ model VerificationToken {
 }
 
 model Couple {
-  id        Int             @id @default(autoincrement())
-  created   DateTime        @default(now())
-  creator   User            @relation(fields: [creatorId], references: [id], name: "creator", onDelete: Cascade)
-  creatorId String
-  joiner    User?           @relation(fields: [joinerId], references: [id], name: "joiner", onDelete: Cascade)
-  joinerId  String?
-  content   CoupleContent[]
-  active    Boolean         @default(false)
+  id             Int            @id @default(autoincrement())
+  created        DateTime       @default(now())
+  creator        User           @relation(fields: [creatorId], references: [id], name: "creator", onDelete: Cascade)
+  creatorId      String
+  joiner         User?          @relation(fields: [joinerId], references: [id], name: "joiner", onDelete: Cascade)
+  joinerId       String?
+  coupleNotes    CoupleNotes[]
+  coupleGallery  CoupleGallery?
+  coupleLinkSafe CoupleLinks[]
+  active         Boolean        @default(false)
 }
 
-model CoupleContent {
-  id       Int      @id @default(autoincrement())
-  couple   Couple   @relation(fields: [coupleId], references: [id], onDelete: Cascade)
-  coupleId Int
-  time     DateTime @default(now())
-  content  String
+model CoupleNotes {
+  id          Int      @id @default(autoincrement())
+  couple      Couple   @relation(fields: [coupleId], references: [id], onDelete: Cascade)
+  coupleId    Int
+  createdTime DateTime @default(now())
+  lastUpdate  DateTime @default(now())
+  content     String?  @db.Text
 }
 
 model CoupleRequest {
@@ -98,4 +101,45 @@ model CoupleRequest {
   senderId   String
   receiver   User     @relation(fields: [receiverId], references: [id], onDelete: Cascade, name: "receiveFReq")
   receiverId String
+}
+
+model CoupleGallery {
+  id          Int          @id @default(autoincrement())
+  couple      Couple       @relation(fields: [coupleId], references: [id])
+  coupleId    Int          @unique
+  imageAlbums ImageAlbum[]
+  safeAlbum   SafeAlbum?
+}
+
+model CoupleLinks {
+  id         Int      @id @default(autoincrement())
+  Couple     Couple?  @relation(fields: [coupleId], references: [id], onDelete: Cascade)
+  coupleId   Int?
+  link       String   @db.Text
+  uploadDate DateTime @default(now())
+}
+
+model ImageAlbum {
+  id              Int            @id @default(autoincrement())
+  CoupleGallery   CoupleGallery? @relation(fields: [coupleGalleryId], references: [id])
+  coupleGalleryId Int?
+  image           Image[]
+  lastUpdate      DateTime       @default(now())
+}
+
+model Image {
+  id           Int         @id @default(autoincrement())
+  uploadDate   DateTime    @default(now())
+  ImageAlbum   ImageAlbum? @relation(fields: [imageAlbumId], references: [id], onDelete: Cascade)
+  imageAlbumId Int?
+  SafeAlbum    SafeAlbum?  @relation(fields: [safeAlbumId], references: [id], onDelete: Cascade)
+  safeAlbumId  Int?
+}
+
+model SafeAlbum {
+  id              Int           @id @default(autoincrement())
+  lastUpdate      DateTime      @default(now())
+  image           Image[]
+  coupleGallery   CoupleGallery @relation(fields: [coupleGalleryId], references: [id])
+  coupleGalleryId Int           @unique
 }
