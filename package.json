@@ -2,9 +2,11 @@
     "private": true,
     "scripts": {
       "build": "turbo run build",
-      "dev": "turbo run dev --parallel --no-cache",
+      "dev": "turbo run dev --filter=app --parallel --no-cache",
       "lint": "turbo run lint",
-      "docs": "turbo run dev --filter=web --parallel --no-cache"
+      "docs": "turbo run dev --filter=web --parallel --no-cache",
+      "prismaf": "pnpm --filter=app exec prisma format",
+      "format": "pnpm prettier"
     },
     "devDependencies": {
       "eslint-config-custom": "workspace:*",
