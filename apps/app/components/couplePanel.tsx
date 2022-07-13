@@ -51,7 +51,7 @@ const CouplePanel = ({session, panelState, setState, setPanelState}: Props) => {
             <Stack align="center" spacing="lg">
                 <Text>Welcome back, {session.user?.name}!</Text>
                 <Grid justify="center">
-                    <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
+                    <Grid.Col span={6}><Button component="a" href="https://coupleapp.vercel.app/" sx={{width: '100%'}}>Docs</Button></Grid.Col>
                     <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
                     <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
                     <Grid.Col span={6}><Button sx={{width: '100%'}}>Test</Button></Grid.Col>
