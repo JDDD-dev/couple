@@ -1,19 +1,47 @@
 import { Button, Center, Grid, Stack, Text } from "@mantine/core"
 import { Session } from "next-auth"
-import { CouplesResponse } from "../lib/types"
+import CoupleData from "./coupleData"
 import CoupleRequest from "./coupleRequest"
+import Gallery from "./gallery"
+import Links from "./links"
+import Notes from "./notes"
 
 type Props = {
     session: Session
     panelState: string
     setState: Function
+    setPanelState: Function
   }
   
 
-const CouplePanel = ({session, panelState, setState}: Props) => {
+const CouplePanel = ({session, panelState, setState, setPanelState}: Props) => {
 
     if (panelState == 'coupleRequest'){
         return <CoupleRequest setState={setState} />
+    }
+
+    if (Number.isInteger(panelState)){
+        return (
+            <CoupleData coupleId={panelState} setPanelState={setPanelState}/>
+        )
+    }
+
+    if (panelState.includes('gallery:')){
+        return (
+            <Gallery coupleId={panelState.split(':')[1]}/>
+        )
+    }
+
+    if (panelState.includes('links:')){
+        return (
+            <Links coupleId={panelState.split(':')[1]}/>
+        )
+    }
+
+    if (panelState.includes('notes:')){
+        return (
+            <Notes coupleId={panelState.split(':')[1]}/>
+        )
     }
 
     return(

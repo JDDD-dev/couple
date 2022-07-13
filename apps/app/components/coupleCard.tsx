@@ -5,9 +5,10 @@ import { CouplesResponse, User } from "../lib/types"
 type Props = {
     couple: CouplesResponse
     id: String
+    setPanelState: Function
 }
 
-const CoupleCard = ({couple, id}: Props) => {
+const CoupleCard = ({couple, id, setPanelState}: Props) => {
     const theme = useMantineTheme()
     const [userData, setUserData] = useState<User>()
     
@@ -28,6 +29,7 @@ const CoupleCard = ({couple, id}: Props) => {
 
     return (
         <UnstyledButton
+            onClick={() => setPanelState(couple.id)}
             sx={{
             display: 'block',
             width: '100%',

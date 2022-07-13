@@ -8,9 +8,10 @@ type Props = {
   session: Session
   state: Boolean
   usersData: CouplesResponse[] | undefined
+  setPanelState: Function
 }
 
-const CoupleList = ({session, state, usersData}: Props) => { 
+const CoupleList = ({session, state, usersData, setPanelState}: Props) => { 
 
     if (state){
       return (
@@ -26,7 +27,7 @@ const CoupleList = ({session, state, usersData}: Props) => {
             {usersData?.map((couple) => {
               return (
                 <div key={couple.id.toString()} >
-                  <CoupleCard couple={couple} id={session.userId} />
+                  <CoupleCard couple={couple} id={session.userId} setPanelState={setPanelState} />
                   <Divider />
                 </div>
               )
