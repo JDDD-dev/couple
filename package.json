@@ -3,7 +3,7 @@
     "scripts": {
       "build": "turbo run build",
       "dev": "turbo run dev --filter=app --parallel --no-cache",
-      "lint": "turbo run lint",
+      "lint": "turbo run lint --parallel",
       "docs": "turbo run dev --filter=web --parallel --no-cache",
       "prismaf": "pnpm --filter=app exec prisma format",
       "format": "pnpm prettier"
