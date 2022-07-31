@@ -12,12 +12,12 @@ const UserShell = ({session, setPanelState}: Props) => {
     const theme = useMantineTheme()
 
     return (
-    <Group>
-      <Menu withArrow placement="center" position="top" sx={{
-        width: '100%'
-      }} control={
-        <Box
+    <Group position="center">
+      <Menu withArrow>
+      <Menu.Target>
+      <Box
         sx={{
+          width: "100%",
           paddingTop: theme.spacing.sm,
           borderTop: `1px solid ${
             theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
@@ -54,7 +54,8 @@ const UserShell = ({session, setPanelState}: Props) => {
         </Group>
       </UnstyledButton>
     </Box>
-      }>
+      </Menu.Target>
+      <Menu.Dropdown>
       <Menu.Item
         icon={<Settings />}>
         Settings
@@ -72,6 +73,7 @@ const UserShell = ({session, setPanelState}: Props) => {
         onClick={() => signOut()}>
         Logout
       </Menu.Item>
+      </Menu.Dropdown>
       </Menu>
     </Group>
     )
