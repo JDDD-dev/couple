@@ -1,4 +1,4 @@
-import { Box, Grid, ScrollArea, Text } from '@mantine/core'
+import { Grid, ScrollArea } from '@mantine/core'
 import LinkData from './LinkData'
 
 type Props = {
@@ -7,70 +7,70 @@ type Props = {
 
 const Links = ({coupleId}: Props) => {
     return (
-        <ScrollArea offsetScrollbars>
-            <Grid justify="center" >
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-                <Grid.Col span={4}><LinkData /></Grid.Col>
-            </Grid>
-        </ScrollArea>
+            <ScrollArea offsetScrollbars style={{ height: '100%' }}>
+                <Grid justify="center">
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}><LinkData /></Grid.Col>
+                    <Grid.Col span={4}>Fin</Grid.Col>
+                </Grid>
+            </ScrollArea>
     )
 }
 
