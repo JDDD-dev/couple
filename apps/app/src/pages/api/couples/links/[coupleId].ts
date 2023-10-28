@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import { authOptions, prisma } from "../../auth/[...nextauth]";
 
 export default async function handlerGetLinks(req: NextApiRequest, res: NextApiResponse): Promise<void>{
@@ -9,7 +9,7 @@ export default async function handlerGetLinks(req: NextApiRequest, res: NextApiR
         return
     }
 
-    const session = await unstable_getServerSession(req, res, authOptions)
+    const session = await getServerSession(req, res, authOptions)
 
     if (session){
         const { coupleId } = req.query

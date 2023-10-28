@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerGetCouples(req: NextApiRequest, res: NextApiResponse): Promise<void>{
-    const session = await unstable_getServerSession(req, res, authOptions)
+    const session = await getServerSession(req, res, authOptions)
     if (session){
         
         const couples = await prisma.couple.findMany({

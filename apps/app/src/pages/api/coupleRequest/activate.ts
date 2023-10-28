@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerActivateCouple(req: NextApiRequest, res: NextApiResponse) {
@@ -8,7 +8,7 @@ export default async function handlerActivateCouple(req: NextApiRequest, res: Ne
         return
     }
 
-    const session = await unstable_getServerSession(req, res, authOptions)
+    const session = await getServerSession(req, res, authOptions)
 
     if (!session){
         res.status(400).send("Not logged in")
