@@ -1,6 +1,6 @@
 import { AppShell, Button, Center, Header, Navbar } from '@mantine/core'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { getServerSession } from 'next-auth/next'
+import { unstable_getServerSession } from 'next-auth'
 import { signIn } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import CoupleList from '../components/coupleList'
@@ -42,16 +42,20 @@ const Home = ({session}: InferGetServerSidePropsType<typeof getServerSideProps>)
   }else{
     return (
       <>
+        <Center sx={{
+          height: '100vh'
+        }}>
             <Button type="button" onClick={() => signIn('google')} >
               Sign in with Google
             </Button>
+        </Center>
       </>
     )
   }
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions)
+  const session = await unstable_getServerSession(context.req, context.res, authOptions)
 
     return {
       props: {

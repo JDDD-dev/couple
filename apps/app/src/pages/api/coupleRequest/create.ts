@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
+import { unstable_getServerSession } from "next-auth/next";
 import { authOptions, prisma } from "../auth/[...nextauth]";
 
 export default async function handlerPostCouples(req: NextApiRequest, res: NextApiResponse){
-    const session = await getServerSession(req, res, authOptions)
+    const session = await unstable_getServerSession(req, res, authOptions)
     if (session){
 
         const user = await prisma.user.findUniqueOrThrow({

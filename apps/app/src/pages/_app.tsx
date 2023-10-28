@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
-import { Notifications } from '@mantine/notifications'
+import { NotificationsProvider } from '@mantine/notifications'
 import Head from 'next/head'
 
 function MyApp({ 
@@ -27,10 +27,10 @@ function MyApp({
 
       <SessionProvider session={pageProps.session}>
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-          <MantineProvider withNormalizeCSS withGlobalStyles theme={{ colorScheme }}>
-            <Notifications autoClose={4000}>
+          <MantineProvider withNormalizeCSS withGlobalStyles theme={{ colorScheme, fontSizes: { xl: 100 } }}>
+            <NotificationsProvider autoClose={4000}>
                 <Component {...pageProps} />
-            </Notifications>
+            </NotificationsProvider>
           </MantineProvider>
         </ColorSchemeProvider>
       </SessionProvider>

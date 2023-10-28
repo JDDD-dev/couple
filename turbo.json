@@ -19,9 +19,6 @@
       },
       "dev": {
         "cache": false
-      },
-      "dbpush": {
-        "cache": false
       }
     }
   }
